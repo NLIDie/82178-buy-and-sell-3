@@ -1,5 +1,3 @@
-'use strict';
-
 const MESSAGE = `
 Программа запускает http-сервер и формирует файл с данными для API.
 
@@ -12,9 +10,9 @@ const MESSAGE = `
     --generate <count>    формирует файл mocks.json
 `;
 
-module.exports = {
+export const cliCommandHelp = {
   name: `--help`,
-  run() {
+  run(): void {
     console.info(MESSAGE);
   }
 };
