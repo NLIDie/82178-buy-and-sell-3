@@ -2,11 +2,12 @@
   "name": "82178-buy-and-sell-3",
   "version": "1.0.0",
   "description": "Куплю. Продам",
-  "main": "./src/service/service.js",
+  "main": "./build/src/service/service.js",
   "scripts": {
-    "start": "node .",
     "test": "npm run eslint",
-    "eslint": "eslint --ext .js src/"
+    "start": "npm run build && node .",
+    "build": "rm -rf ./build && tsc -p .",
+    "eslint": "eslint --ext .ts src/"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,12 @@
   "homepage": "https://github.com/NLIDie/82178-buy-and-sell-3#readme",
   "devDependencies": {
     "@types/node": "12.12.6",
+    "@types/uuid": "8.3.0",
+    "@typescript-eslint/eslint-plugin": "4.1.0",
+    "@typescript-eslint/parser": "4.1.0",
     "eslint": "7.8.1",
-    "eslint-config-htmlacademy": "0.6.0"
+    "eslint-config-htmlacademy": "0.6.0",
+    "typescript": "4.0.2"
   },
   "dependencies": {
     "uuid": "8.3.0"
