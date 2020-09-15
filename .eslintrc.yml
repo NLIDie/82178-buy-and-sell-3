@@ -1,3 +1,5 @@
+parser: '@typescript-eslint/parser'
+
 parserOptions:
   ecmaVersion: 2018
 
@@ -5,4 +7,22 @@ env:
   es6: true
   node: true
 
-extends: 'htmlacademy/node'
+plugins:
+  - '@typescript-eslint'
+
+extends:
+  - 'htmlacademy/node'
+  - 'plugin:@typescript-eslint/recommended'
+
+rules:
+  # https://github.com/typescript-eslint/typescript-eslint/pull/1311
+  quotes: 'off'
+  '@typescript-eslint/quotes':
+    - 'error'
+    - 'backtick'
+
+  # https://github.com/typescript-eslint/typescript-eslint/issues/325
+  'no-shadow': 0
+
+  '@typescript-eslint/prefer-enum-initializers':
+    - 'error'
