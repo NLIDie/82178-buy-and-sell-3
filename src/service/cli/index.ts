@@ -1,6 +1,7 @@
 import {cliCommandGenerate} from './generate';
 import {cliCommandVersion} from './version';
 import {cliCommandHelp} from './help';
+import {cliCommandServer} from './server';
 
 export const processCLICommands = async (userArgs: string[]): Promise<void> => {
   const [commandName, commandValue] = userArgs;
@@ -12,8 +13,12 @@ export const processCLICommands = async (userArgs: string[]): Promise<void> => {
     }
 
     case cliCommandGenerate.name: {
-      await cliCommandGenerate.run(parseInt(commandValue, 10));
+      cliCommandGenerate.run(commandValue);
+      break;
+    }
 
+    case cliCommandServer.name: {
+      cliCommandServer.run(commandValue);
       break;
     }
 

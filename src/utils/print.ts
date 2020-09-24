@@ -1,18 +1,18 @@
 import chalk from 'chalk';
 
-const success = (...text: string[]): void => {
+const success = (...text: unknown[]): void => {
   console.info(chalk.green(text));
 };
 
-const error = (...text: string[]): void => {
+const error = (...text: unknown[]): void => {
   console.error(chalk.red(text));
 };
 
-const info = (...text: string[]): void => {
+const info = (...text: unknown[]): void => {
   console.info(chalk.blue(text));
 };
 
-const log = (...text: string[]): void => {
+const log = (...text: unknown[]): void => {
   console.info(chalk.gray(text));
 };
 
