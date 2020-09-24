@@ -1,3 +1,5 @@
+import {print} from "@utils";
+
 const MESSAGE = `
 Программа запускает http-сервер и формирует файл с данными для API.
 
@@ -13,6 +15,6 @@ const MESSAGE = `
 export const cliCommandHelp = {
   name: `--help`,
   run(): void {
-    console.info(MESSAGE);
+    print.log(MESSAGE);
   }
 };

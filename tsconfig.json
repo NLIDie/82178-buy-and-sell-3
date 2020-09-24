@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "./build",
-    "sourceMap": true,
-    "module": "CommonJS",
-    "target": "ES2018",
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "build",
     "strict": true,
+
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node",
-    "resolveJsonModule": true
+
+    "noEmit": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "paths": {
+      "@service/*": ["src/service/*"],
+      "@express/*": ["src/express/*"],
+      "@utils": ["src/utils"]
+    }
   },
   "exclude": [
     "node_modules",

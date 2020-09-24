@@ -1,3 +1,4 @@
+import {print} from '@utils';
 import packageJSON from '../../../package.json';
 
 export const cliCommandVersion = {
@@ -5,6 +6,6 @@ export const cliCommandVersion = {
   shortName: `-v`,
   description: `Выводит номер версии`,
   run(): void {
-    console.info(`v${packageJSON.version}`);
+    print.info(`v${packageJSON.version}`);
   }
 };
