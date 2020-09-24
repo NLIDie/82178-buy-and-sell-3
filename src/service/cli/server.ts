@@ -4,7 +4,7 @@ import {print} from '@utils';
 import {Offer} from '@entities/offer';
 
 const DEFAULT_PORT = 3000;
-const DEFAULT_HOST = 'localhost';
+const DEFAULT_HOST = `localhost`;
 const FILENAME = `mocks.json`;
 
 enum HttpCode {

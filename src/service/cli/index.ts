@@ -17,13 +17,13 @@ export const processCLICommands = async (userArgs: string[]): Promise<void> => {
       break;
     }
 
-    case cliCommandServer.name: {
-      cliCommandServer.run(commandValue);
+    case cliCommandHelp.name: {
+      cliCommandHelp.run();
       break;
     }
 
     default: {
-      cliCommandHelp.run();
+      cliCommandServer.run(commandValue);
     }
   }
 };
