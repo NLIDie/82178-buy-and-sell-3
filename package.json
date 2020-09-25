@@ -8,7 +8,7 @@
     "start": "npm run build && node .",
     "build": "npm run build:js",
     "build:js": "babel src --out-dir build --extensions \".ts\" --copy-files --source-maps inline",
-    "lint": "npm run type-check && npm run lint:eslint",
+    "lint": "npm run type-check && npm run eslint",
     "eslint": "eslint --ext .ts src/",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
