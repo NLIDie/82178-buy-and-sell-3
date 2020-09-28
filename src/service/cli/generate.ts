@@ -1,10 +1,10 @@
 import {promises as fs} from 'fs';
 import {
-  v1 as uuidv1,
-  v5 as uuidv5
-} from 'uuid';
-import {getRandomInteger} from '../utils/getRandomInteger';
-import {shuffle} from '../utils/shuffle';
+  getRandom,
+  getUniqueID,
+  print,
+  shuffle
+} from '@utils';
 
 enum OfferCategory {
   BOOKS = `Книги`,
@@ -76,17 +76,17 @@ type Offer = {
 const getPictureFileName = (number: number): string => `item${number}.jpg`;
 
 const makeOffer = (offerData: Omit<Offer, 'id'>): Offer => ({
-  id: uuidv5(`Offer`, uuidv1()),
+  id: getUniqueID(`Offer`),
   ...offerData
 });
 
 const generateOffer = (): Offer => makeOffer({
-  type: shuffle(OFFER_TYPES)[getRandomInteger(0, OFFER_TYPES.length - 1)],
-  title: shuffle(OFFER_TITLES)[getRandomInteger(0, OFFER_TITLES.length - 1)],
-  picture: getPictureFileName(getRandomInteger(PictureRestrict.MIN, PictureRestrict.MAX)),
-  description: shuffle(SENTENCES).slice(0, getRandomInteger(1, SENTENCES.length - 1)).join(` `),
-  category: shuffle(OFFER_CATEGORIES).slice(0, getRandomInteger(1, OFFER_CATEGORIES.length - 1)),
-  sum: getRandomInteger(SumRestrict.MIN, SumRestrict.MAX)
+  type: shuffle(OFFER_TYPES)[getRandom(0, OFFER_TYPES.length - 1)],
+  title: shuffle(OFFER_TITLES)[getRandom(0, OFFER_TITLES.length - 1)],
+  picture: getPictureFileName(getRandom(PictureRestrict.MIN, PictureRestrict.MAX)),
+  description: shuffle(SENTENCES).slice(0, getRandom(1, SENTENCES.length - 1)).join(` `),
+  category: shuffle(OFFER_CATEGORIES).slice(0, getRandom(1, OFFER_CATEGORIES.length - 1)),
+  sum: getRandom(SumRestrict.MIN, SumRestrict.MAX)
 });
 
 const generateOffers = (count: number): Offer[] => (
@@ -98,9 +98,12 @@ const generateOffers = (count: number): Offer[] => (
 const writeFileWithMocks = async <T>(data: T[]): Promise<void> => {
   const fileName = `mocks.json`;
 
-  await fs.writeFile(fileName, JSON.stringify(data), `utf-8`);
-
-  console.info(`Файл ${fileName} успешно создан.`);
+  try {
+    await fs.writeFile(fileName, JSON.stringify(data), `utf-8`);
+    print.success(`Файл "${fileName}" успешно создан.`);
+  } catch (error) {
+    print.error(`Не удалось записать данные в файл. ${error}`);
+  }
 };
 
 enum GenerateCountRestrict {
@@ -114,7 +117,7 @@ export const cliCommandGenerate = {
     const offerCount = Number.isInteger(count) ? count : GenerateCountRestrict.MIN;
 
     if (offerCount > GenerateCountRestrict.MAX) {
-      console.info(`Не больше ${GenerateCountRestrict.MAX} объявлений`);
+      print.error(`Не больше ${GenerateCountRestrict.MAX} объявлений`);
       return;
     }
 

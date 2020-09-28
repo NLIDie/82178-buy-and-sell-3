@@ -1,0 +1,28 @@
+{
+  "presets": [
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": true
+        }
+      }
+    ]
+  ],
+
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@service": "./src/service",
+          "@express": "./src/express",
+          "@utils": "./src/utils"
+        },
+        "extensions": [".js", ".ts"]
+      }
+    ]
+  ]
+}
