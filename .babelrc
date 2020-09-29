@@ -19,6 +19,7 @@
         "alias": {
           "@service": "./src/service",
           "@express": "./src/express",
+          "@entities": "./src/entities",
           "@utils": "./src/utils"
         },
         "extensions": [".js", ".ts"]
