@@ -1,11 +1,9 @@
 import http from 'http';
-import {promises as fs} from 'fs';
 import {print} from '@utils';
-import {Offer} from '@entities/offer';
+import {offerMock} from '@entities/offer';
 
 const DEFAULT_PORT = 3000;
 const DEFAULT_HOST = `localhost`;
-const FILENAME = `mocks.json`;
 
 enum HttpCode {
   OK = 200,
@@ -46,18 +44,15 @@ const onClientConnect: http.RequestListener = async (
 
   switch (request.url) {
     case `/`: {
-      let mockContent = `[]`;
-
       try {
-        mockContent = await fs.readFile(FILENAME, `utf-8`);
+        const offers = await offerMock.read();
+
+        const message = offers.map((offer) => `<li>${offer.title}</li>`).join(``);
+        sendResponse(response, HttpCode.OK, `<ul>${message}</ul>`);
       } catch (err) {
+        print.error(`Не удалось получить offers. Error: ${err}`);
         sendResponse(response, HttpCode.NOT_FOUND, notFoundMessageText);
       }
-
-      const offers: Offer[] = JSON.parse(mockContent);
-      const message = offers.map((offer) => `<li>${offer.title}</li>`).join(``);
-
-      sendResponse(response, HttpCode.OK, `<ul>${message}</ul>`);
       break;
     }
 

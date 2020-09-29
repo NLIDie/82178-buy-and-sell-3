@@ -15,7 +15,7 @@ export type Offer = {
   category: string[];
 }
 
-export const makeOffer = (offerData: Omit<Offer, 'id'>): Offer => ({
+const makeOffer = (offerData: Omit<Offer, 'id'>): Offer => ({
   id: getUniqueID(`Offer`),
   ...offerData
 });
