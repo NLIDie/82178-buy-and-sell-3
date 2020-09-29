@@ -1,4 +1,5 @@
 import {promises as fs} from 'fs';
+import path from 'path';
 import {
   getRandom,
   print,
@@ -9,9 +10,9 @@ import {
   OfferType
 } from '@entities/offer';
 
-const FILE_SENTENCES_PATH = `./data/sentences.txt`;
-const FILE_TITLES_PATH = `./data/titles.txt`;
-const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const FILE_SENTENCES_PATH = path.join(__dirname, `../../../data/sentences.txt`);
+const FILE_TITLES_PATH = path.join(__dirname, `../../../data/titles.txt`);
+const FILE_CATEGORIES_PATH = path.join(__dirname, `../../../data/categories.txt`);
 
 enum SumRestrict {
   MIN = 1000,
